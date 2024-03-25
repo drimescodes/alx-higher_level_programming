@@ -1,0 +1,88 @@
+The test suite for the 101-lazy_matrix_mul module
+
+>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Test 01:
+	>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+	array([[ 7, 10],
+	       [15, 22]])
+
+Test 02:
+	>>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+	array([[13, 16]])
+
+Test 03:
+	>>> lazy_matrix_mul("lol", "cap")
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U3'), dtype('<U3')) -> None
+
+Test 04:
+	>>> lazy_matrix_mul([[1, 2]], "cap")
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U3')) -> None
+
+Test 05:
+	>>> lazy_matrix_mul(["lol"], ["cap"])
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U3'), dtype('<U3')) -> None
+
+Test 06:
+	>>> lazy_matrix_mul([[1, 2]], ["cap"])
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U3')) -> None
+
+Test 07:
+	>>> lazy_matrix_mul([], [])
+	0.0
+
+Test 08:
+	>>> lazy_matrix_mul([[1, 2]], [])
+	Traceback (most recent call last):
+	...
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 0 is different from 2)
+
+Test 09:
+	>>> lazy_matrix_mul([[]], [[]])
+	Traceback (most recent call last):
+	...
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 0)
+
+Test 10:
+	>>> lazy_matrix_mul([[1, 2]], [[]])
+	Traceback (most recent call last):
+	...
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 1 is different from 2)
+
+Test 11:
+	>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], ["3", 4]])
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('int64'), dtype('<U21')) -> None
+
+Test 12:
+	>>> lazy_matrix_mul([[1, 2], ["3", 4]], [[1, 2], [3, 4]])
+	Traceback (most recent call last):
+	...
+	numpy.core._exceptions._UFuncNoLoopError: ufunc 'matmul' did not contain a loop with signature matching types (dtype('<U21'), dtype('int64')) -> None
+
+Test 13:
+	>>> lazy_matrix_mul([[1, 2], [3, 4, 5]], [[1, 2], [3, 4]])
+	Traceback (most recent call last):
+	...
+	ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+Test 14:
+	>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 5]])
+	Traceback (most recent call last):
+	...
+	ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+Test 15:
+	>>> lazy_matrix_mul([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4]])
+	Traceback (most recent call last):
+	...
+	ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
